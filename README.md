@@ -41,6 +41,19 @@ Install:
 
 Then say "vibe check me" after Claude explains something.
 
+#### Auto-quiz on an interval (session-scoped)
+
+Two extra commands run the quiz automatically on a repeating timer that **stops when the
+session ends** (it does not persist like a cron job):
+
+- `/vibe-check:loop-start [minutes]` — start a recurring quiz. The interval is in minutes: a
+  bare number is read as minutes (`5` → every 5 min), and it defaults to `30` if omitted.
+  Re-run it with a new value to change the interval.
+- `/vibe-check:loop-stop` — stop the recurring quiz. You can also press `Esc`, and any loop
+  ends automatically when the session closes.
+
+These are thin wrappers around Claude Code's built-in `/loop`.
+
 ## Adding a new plugin
 
 Each plugin is self-contained under `plugins/<name>/`:
