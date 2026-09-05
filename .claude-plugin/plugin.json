@@ -1,0 +1,18 @@
+{
+  "name": "vibe-check",
+  "description": "Quiz-yourself skill: tests your understanding of a code change, fix, or concept with one targeted multiple-choice question, then grades and explains.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Jacob Meloche"
+  },
+  "homepage": "https://github.com/melocj2/vibe-check",
+  "repository": "https://github.com/melocj2/vibe-check",
+  "license": "MIT",
+  "keywords": [
+    "skills",
+    "learning",
+    "quiz",
+    "assessment",
+    "claude-code"
+  ]
+}
