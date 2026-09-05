@@ -1,6 +1,6 @@
 ---
 name: vibe-check
-description: Use when the user asks to be quizzed, tested, or checked on their understanding — "vibe check", "quiz me", "test whether I understand", "ask me multiple choice questions" — about a code change, bug fix, concept, or explanation.
+description: Run ONLY when the user explicitly invokes the /vibe-check:vibe-check command. Do NOT auto-trigger on natural-language phrases like "quiz me", "vibe check", "test whether I understand", or "ask me multiple choice questions" — those requests are handled by other skills.
 ---
 
 # vibe-check
@@ -14,10 +14,11 @@ missing so it can be taught on the spot.
 
 ## When to use
 
-- User says "vibe check", "quiz me", "test whether I understand", "ask me
-  multiple choice questions" — on the current discussion or a topic they name.
-- Default the subject to what was just discussed; if the user names a topic, use
-  that instead.
+- **Only when the user explicitly runs the `/vibe-check:vibe-check` command.** This
+  skill does not auto-fire on natural-language requests like "quiz me" or "vibe
+  check" — other skills handle those.
+- Default the subject to what was just discussed; if the user names a topic when
+  invoking the command, use that instead.
 
 ## Workflow
 
