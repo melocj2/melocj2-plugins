@@ -1,14 +1,28 @@
-# vibe-check
+# melocj2-plugins
 
-A [Claude Code](https://claude.com/claude-code) skill that quizzes you on what you
-just learned. When you ask to be "vibe checked," Claude asks **one** targeted
-multiple-choice question about the current discussion — a bug fix, a code change,
-or a concept — then grades your answer and explains the reasoning.
+A personal [Claude Code](https://claude.com/claude-code) plugin marketplace — a
+single place to publish and install my Claude Code tools. Add it once and install
+any plugin from it; new tools show up here over time.
 
-The point isn't to trick you. It's to surface exactly which mental step is missing
-so it can be taught on the spot.
+## Add the marketplace
 
-## What it does
+In a Claude Code session:
+
+```
+/plugin marketplace add melocj2/melocj2-plugins
+```
+
+Then install whichever plugins you want (see below).
+
+## Plugins
+
+### vibe-check
+
+Quizzes you on what you just learned. When you ask to be "vibe checked," Claude asks
+**one** targeted multiple-choice question about the current discussion — a bug fix, a
+code change, or a concept — then grades your answer and explains the reasoning. The
+point isn't to trick you; it's to surface exactly which mental step is missing so it
+can be taught on the spot.
 
 - Triggers on phrases like **"vibe check"**, **"quiz me"**, **"test whether I
   understand"**, or **"ask me multiple choice questions."**
@@ -17,45 +31,34 @@ so it can be taught on the spot.
 - Distractors are drawn from real misconceptions; the correct slot is chosen by
   computation (not by feel) so the answer doesn't cluster or leak.
 - Grades by the answer's *text*, explains why the right answer is right — and, on a
-  miss, why the distractor you picked is wrong — then leaves you with a one-line
-  mental-model takeaway.
+  miss, why the distractor you picked is wrong — then leaves a one-line takeaway.
 
-## Install
-
-### Option A — as a Claude Code plugin (recommended)
-
-In a Claude Code session:
+Install:
 
 ```
-/plugin marketplace add melocj2/vibe-check
-/plugin install vibe-check@vibe-check
+/plugin install vibe-check@melocj2-plugins
 ```
 
-Then just say "vibe check me" after Claude explains something.
+Then say "vibe check me" after Claude explains something.
 
-### Option B — copy the skill in manually
+## Adding a new plugin
 
-Clone (or download) this repo and copy the skill folder into your Claude skills
-directory:
+Each plugin is self-contained under `plugins/<name>/`:
 
-```bash
-git clone https://github.com/melocj2/vibe-check.git
-cp -r vibe-check/skills/vibe-check ~/.claude/skills/
+```
+plugins/<name>/
+├── .claude-plugin/
+│   └── plugin.json        # plugin manifest (name, version, …)
+└── skills/<skill>/SKILL.md # and/or commands/, agents/, hooks/
 ```
 
-The result should be `~/.claude/skills/vibe-check/SKILL.md`. Restart Claude Code (or
-start a new session) and the skill is available.
+Then register it by adding one entry to `.claude-plugin/marketplace.json`:
 
-## How to use
+```json
+{ "name": "<name>", "source": "./plugins/<name>" }
+```
 
-After Claude explains a change or concept, say any of:
-
-- "vibe check"
-- "quiz me on that"
-- "test whether I understand this"
-
-Claude asks one multiple-choice question. Answer it — or pick "I don't know" to have
-it taught instead. Either way you get an explanation and a takeaway.
+Commit and push — the marketplace picks it up on the next `/plugin marketplace update`.
 
 ## License
 

@@ -1,18 +1,13 @@
 {
-  "name": "vibe-check",
-  "description": "Marketplace for the vibe-check skill",
+  "name": "melocj2-plugins",
+  "description": "Jacob Meloche's personal Claude Code plugins",
   "owner": {
     "name": "Jacob Meloche"
   },
   "plugins": [
     {
       "name": "vibe-check",
-      "description": "Quiz-yourself skill: tests your understanding with one targeted multiple-choice question, then grades and explains.",
-      "version": "1.0.0",
-      "source": "./",
-      "author": {
-        "name": "Jacob Meloche"
-      }
+      "source": "./plugins/vibe-check"
     }
   ]
 }
