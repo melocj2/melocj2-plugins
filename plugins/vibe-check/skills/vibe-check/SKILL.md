@@ -17,6 +17,13 @@ missing so it can be taught on the spot.
 - **Only when the user explicitly runs the `/vibe-check:vibe-check` command.** This
   skill does not auto-fire on natural-language requests like "quiz me" or "vibe
   check" — other skills handle those.
+- **Every question requires the command — including follow-ups.** A
+  natural-language continuation like "continue the quiz", "ask another", "again",
+  or "keep going" does NOT authorize a new question. Only the typed
+  `/vibe-check:vibe-check` command does. If the user asks to continue without
+  typing it, do not call `AskUserQuestion` — tell them to run the command again.
+  (The sole exception is the session-scoped loop started via
+  `/vibe-check:loop-start`, which is its own explicit opt-in.)
 - Default the subject to what was just discussed; if the user names a topic when
   invoking the command, use that instead.
 
@@ -94,4 +101,6 @@ Once the answer is in:
 - Picking the correct slot by feel instead of the char-count-mod-4 rule.
 - Asking recall trivia (line numbers, exact names) instead of reasoning.
 - Batching more than one question — ask exactly one.
+- Firing a follow-up on a natural-language "continue"/"another"/"again" instead
+  of waiting for the command to be re-typed.
 - Grading without explaining a miss — the teaching moment is the point.
